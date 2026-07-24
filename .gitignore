@@ -1,1 +1,11 @@
-/target
+# Rust
+/target/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.rs.bk
+
+# OS files
+.DS_Store
+Thumbs.db

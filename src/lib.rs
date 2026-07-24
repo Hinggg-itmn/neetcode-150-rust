@@ -1,14 +1,16 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub mod arrays_hashing;
+pub mod two_pointers;
+pub mod sliding_window;
+pub mod stack;
+pub mod binary_search;
+pub mod linked_list;
+pub mod trees;
+pub mod tries;
+pub mod heap_priority_queue;
+pub mod backtracking;
+pub mod graphs;
+pub mod advanced_graphs;
+pub mod dp_1d;
+pub mod dp_2d;
+pub mod greedy_intervals;
+pub mod math_bit_manipulation;
