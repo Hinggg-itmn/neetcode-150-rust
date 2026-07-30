@@ -14,6 +14,22 @@ pub fn is_anagram(s: &str, t: &str) -> bool {
     t_chars.sort_unstable();
     s_chars == t_chars
 }
+pub fn is_anagram_v2(s: &str, t: &str) -> bool {
+    if s.len() != t.len() {
+        return false;
+    }
+    let mut count = [0i32; 26];
+    for b in s.bytes() {
+        // Bước 1: tăng count tại vị trí tương ứng với ký tự b
+        count[(b - b'a') as usize] += 1;
+    }
+    for b in t.bytes() {
+        // Bước 2: giảm count tại vị trí tương ứng với ký tự b
+        count[(b - b'a') as usize] -= 1;
+    }
+    // Bước 3: kiểm tra toàn bộ count có phải toàn số 0 không
+    count.iter().all(|&c| c == 0)
+}
 
 #[cfg(test)]
 mod tests {

@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # scripts/new_problem.sh <category> <slug>
 # Ví dụ: ./scripts/new_problem.sh arrays_hashing two-sum
+set -e
 
+if [ "$#" -lt 2 ]; then
+    echo "Thiếu tham số. Cách dùng: ./scripts/new_problem.sh <category> <slug>"
+    exit 1
+fi
 
 CATEGORY=$1
 RAW_SLUG=$2
@@ -9,17 +14,28 @@ RAW_SLUG=$2
 # Tự động thay thế mọi dấu gạch ngang (-) thành gạch dưới (_) cho Rust chuẩn cú pháp
 SLUG=$(echo "$RAW_SLUG" | tr '-' '_')
 
-# Đảm bảo thư mục tồn tại
 mkdir -p "src/${CATEGORY}"
 mkdir -p "notes"
 
+# Kiểm tra trùng CẢ file code lẫn file note trước khi làm gì cả,
+# tránh trường hợp chạy lại lỡ tay ghi đè mất note đã viết
+if [ -f "src/${CATEGORY}/${SLUG}.rs" ]; then
+    echo "❌ Lỗi: Bài '${SLUG}' đã tồn tại tại src/${CATEGORY}/${SLUG}.rs! Không ghi đè để tránh mất code."
+    exit 1
+fi
+if [ -f "notes/${SLUG}.md" ]; then
+    echo "❌ Lỗi: Note '${SLUG}' đã tồn tại tại notes/${SLUG}.md! Không ghi đè để tránh mất note."
+    exit 1
+fi
+
 echo "Đang gọi API LeetCode để lấy thông tin bài '${RAW_SLUG}'..."
 
-# Gọi API công khai của LeetCode dùng slug gốc có dấu (-)
 API_URL="https://leetcode.com/graphql"
 QUERY='{"query":"query getQuestionDetail($titleSlug: String!) { question(titleSlug: $titleSlug) { questionId title translatedTitle } }","variables":{"titleSlug":"'"$RAW_SLUG"'"}}'
 
-RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$QUERY" "$API_URL")
+# "|| true" để nếu mạng lỗi / API sập, script KHÔNG bị set -e giết ngang,
+# mà rơi xuống nhánh "không tìm thấy ID" bên dưới như thiết kế ban đầu
+RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$QUERY" "$API_URL" || true)
 QUESTION_ID=$(echo "$RESPONSE" | grep -o '"questionId":"[^"]*"' | head -1 | cut -d'"' -f4)
 
 if [ -z "$QUESTION_ID" ]; then
@@ -29,13 +45,8 @@ else
     echo "✅ Đã tìm thấy mã bài: $QUESTION_ID"
 fi
 
-# Kiểm tra nếu file .rs đã tồn tại thì báo lỗi và dừng lại
-if [ -f "src/${CATEGORY}/${SLUG}.rs" ]; then
-    echo "❌ Lỗi: Bài '${SLUG}' đã tồn tại trong thư mục ${CATEGORY}! Không ghi đè để tránh mất code."
-    exit 1
-fi
-# 1. Tạo file mã nguồn .rs (Dùng tên đã đổi dấu _ chuẩn Rust)
-cat > "src/${CATEGORY}/${SLUG}.rs" << EOF
+# 1. Tạo file mã nguồn .rs
+cat > "src/${CATEGORY}/${SLUG}.rs" << RUST
 //! $SLUG
 //! Time: O(?) | Space: O(?)
 
@@ -52,7 +63,7 @@ mod tests {
         // TODO
     }
 }
-EOF
+RUST
 
 # 2. Đăng ký module vào mod.rs của category
 if [ -f "src/${CATEGORY}/mod.rs" ]; then
@@ -63,8 +74,8 @@ else
     echo "pub mod ${SLUG};" > "src/${CATEGORY}/mod.rs"
 fi
 
-# 3. Tạo file notes (Dùng $RAW_SLUG cho link LeetCode, $SLUG cho tiêu đề file)
-cat > "notes/${SLUG}.md" << EOF
+# 3. Tạo file notes
+cat > "notes/${SLUG}.md" << NOTES
 # ${QUESTION_ID}. ${SLUG}
 
 **Link:** https://leetcode.com/problems/${RAW_SLUG}/
@@ -80,6 +91,6 @@ cat > "notes/${SLUG}.md" << EOF
 ## Pattern / insight rút ra
 
 ## Lỗi đã mắc lúc làm
-EOF
+NOTES
 
 echo "🎉 Đã tạo xong src/${CATEGORY}/${SLUG}.rs và notes/${SLUG}.md"
