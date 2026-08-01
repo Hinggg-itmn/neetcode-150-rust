@@ -44,6 +44,7 @@ Chạy `cargo test` cho đúng bài đó trước, nếu pass mới thêm dòng 
 | # | Ngày | Bài | Category | Độ khó | Cách giải | Complexity |
 |---|------|-----|----------|--------|-----------|------------|
 <!-- ROWS -->
+| 5 | 2026-08-02 | Top K Frequency Elements | top-k-frequent-elements | Medium | BinaryHeap | O(n)/O(n) |
 | 4 | 2026-07-30 | Group_Anagrams | arrays_hashing | Medium | Sorting | O(n)/O(nlogn) |
 | - | 2026-07-28 | [Valid Anagram (Update Approach)](notes/valid_anagram.md) | arrays_hashing | Easy | Frequency Array | O(n)/O(1) |
 | 1 | 2026-07-26 | Two Sum | arrays_hashing | Easy | HashMap | O(n)/O(n) |
