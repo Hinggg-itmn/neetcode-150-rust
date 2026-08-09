@@ -44,6 +44,7 @@ Chạy `cargo test` cho đúng bài đó trước, nếu pass mới thêm dòng 
 | # | Ngày | Bài | Category | Độ khó | Cách giải | Complexity |
 |---|------|-----|----------|--------|-----------|------------|
 <!-- ROWS -->
+| 8 | 2026-08-09 | Valid Sudoku | arrays_hashing | Medium | HashSet | O(1)/O(1) |
 | 7 | 2026-08-08 | Products Of Array | arrays_hashing | Medium | Prefix | O(n)/O(n) |
 | 6 | 2026-08-04 | Encode AndDecode String | arrays_hashing | Medium | Chunked | Transfer |
 | - | 2026-08-03 | [Top K Frequent Elements (Update Approach)](notes/top_k_frequent_elements.md) | arrays_hashing | Medium | Bucket Sort approach | O(n)/O(n) |
