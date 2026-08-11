@@ -44,6 +44,7 @@ Chạy `cargo test` cho đúng bài đó trước, nếu pass mới thêm dòng 
 | # | Ngày | Bài | Category | Độ khó | Cách giải | Complexity |
 |---|------|-----|----------|--------|-----------|------------|
 <!-- ROWS -->
+| - | 2026-08-11 | [Longest Consecutive Sequence (Update Approach)](notes/longest_consecutive_sequence.md) | arrays_hashing | Medium | Sorting approach | O(nlogn)/O(n) |
 | 9 | 2026-08-11 | Longest Consecutive Sequence | arrays_hashing | Medium | HashSet | O(n)/O(n) |
 | 8 | 2026-08-09 | Valid Sudoku | arrays_hashing | Medium | HashSet | O(1)/O(1) |
 | 7 | 2026-08-08 | Products Of Array | arrays_hashing | Medium | Prefix | O(n)/O(n) |

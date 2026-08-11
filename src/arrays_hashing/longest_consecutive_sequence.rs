@@ -19,27 +19,55 @@ pub fn longest_consecutive_sequence(nums: Vec<i32>) -> i32 {
     longest
 }
 
+pub fn longest_consecutive_sequence_v2(nums: Vec<i32>) -> i32 {
+    if nums.is_empty(){
+        return 0;
+    }
+    let mut sorted = nums.clone();
+    sorted.sort_unstable();
+    sorted.dedup();
+    let mut longest= 1;
+    let mut current =1;
+    for i in 1..sorted.len(){
+        if sorted[i]== sorted[i-1]+1{
+            current +=1;
+        }else {
+            current = 1;
+        }
+        longest= longest.max(current);
+
+    }
+    longest
+}
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn basic_case() {
-        assert_eq!(longest_consecutive_sequence(vec![100, 4, 200, 1, 3, 2]), 4);
+        let input = vec![100, 4, 200, 1, 3, 2];
+        assert_eq!(longest_consecutive_sequence(input.clone()), 4);
+        assert_eq!(longest_consecutive_sequence_v2(input), 4);
     }
 
     #[test]
     fn empty_array() {
-        assert_eq!(longest_consecutive_sequence(vec![]), 0);
+        let input = vec![];
+        assert_eq!(longest_consecutive_sequence(input.clone()), 0);
+        assert_eq!(longest_consecutive_sequence_v2(input), 0);
     }
 
     #[test]
     fn with_duplicates() {
-        assert_eq!(longest_consecutive_sequence(vec![1, 2, 0, 1]), 3);
+        let input = vec![1, 2, 0, 1];
+        assert_eq!(longest_consecutive_sequence(input.clone()), 3);
+        assert_eq!(longest_consecutive_sequence_v2(input), 3);
     }
 
     #[test]
     fn all_same_number() {
-        assert_eq!(longest_consecutive_sequence(vec![5, 5, 5, 5]), 1);
+        let input = vec![5, 5, 5, 5];
+        assert_eq!(longest_consecutive_sequence(input.clone()), 1);
+        assert_eq!(longest_consecutive_sequence_v2(input), 1);
     }
 }
