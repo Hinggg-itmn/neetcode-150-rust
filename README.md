@@ -44,6 +44,7 @@ Chạy `cargo test` cho đúng bài đó trước, nếu pass mới thêm dòng 
 | # | Ngày | Bài | Category | Độ khó | Cách giải | Complexity |
 |---|------|-----|----------|--------|-----------|------------|
 <!-- ROWS -->
+| 10 | 2026-08-15 | Valid Palindrome | two_pointers | Easy | Two Pointers (v2), so với Iterator rev (v1) và String rebuild (v3) | O(n)/O(1) |
 | - | 2026-08-11 | [Longest Consecutive Sequence (Update Approach)](notes/longest_consecutive_sequence.md) | arrays_hashing | Medium | Sorting approach | O(nlogn)/O(n) |
 | 9 | 2026-08-11 | Longest Consecutive Sequence | arrays_hashing | Medium | HashSet | O(n)/O(n) |
 | 8 | 2026-08-09 | Valid Sudoku | arrays_hashing | Medium | HashSet | O(1)/O(1) |

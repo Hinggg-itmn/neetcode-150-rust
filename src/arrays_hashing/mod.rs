@@ -7,3 +7,4 @@ pub mod encode_and_decode_strings;
 pub mod products_of_array_except_self;
 pub mod valid_sudoku;
 pub mod longest_consecutive_sequence;
+pub mod valid_palindrome;
