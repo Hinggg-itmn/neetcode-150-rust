@@ -21,7 +21,7 @@ impl Codec {
         {
             let mut j = i;
             while bytes[j] !=b'#'{
-                j+=i; 
+                j+=1; 
             }
         
         let len_str= std::str::from_utf8(&bytes[i..j]).unwrap();
