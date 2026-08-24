@@ -44,6 +44,7 @@ Chạy `cargo test` cho đúng bài đó trước, nếu pass mới thêm dòng 
 | # | Ngày | Bài | Category | Độ khó | Cách giải | Complexity |
 |---|------|-----|----------|--------|-----------|------------|
 <!-- ROWS -->
+| 13 | 2026-08-24 | Container With Most Water | two_pointers | Medium | TwoPointers | O(n)/O(1) |
 | 12 | 2026-08-22 | 3 Sum | two_pointers | Medium | Two | Pointers |
 | 11 | 2026-08-17 | Two Sum II | two_poiters | Medium | Two | Pointer |
 | 10 | 2026-08-15 | Valid Palindrome | two_pointers | Easy | Two Pointers (v2), so với Iterator rev (v1) và String rebuild (v3) | O(n)/O(1) |
