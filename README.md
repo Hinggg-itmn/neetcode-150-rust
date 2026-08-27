@@ -44,6 +44,7 @@ Chạy `cargo test` cho đúng bài đó trước, nếu pass mới thêm dòng 
 | # | Ngày | Bài | Category | Độ khó | Cách giải | Complexity |
 |---|------|-----|----------|--------|-----------|------------|
 <!-- ROWS -->
+| 14 | 2026-08-27 | Trapping Rain Water | two_pointers | Hard | Two Pointers O(1) space, so voi brute force va Prefix/Suffix Max | O(n)/O(1) |
 | 13 | 2026-08-24 | Container With Most Water | two_pointers | Medium | TwoPointers | O(n)/O(1) |
 | 12 | 2026-08-22 | 3 Sum | two_pointers | Medium | Two | Pointers |
 | 11 | 2026-08-17 | Two Sum II | two_poiters | Medium | Two | Pointer |
