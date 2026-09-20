@@ -41,23 +41,22 @@ Chạy `cargo test` cho đúng bài đó trước, nếu pass mới thêm dòng 
 
 ## Lịch sử làm bài
 
-| # | Ngày | Bài | Category | Độ khó | Cách giải | Complexity |
-|---|------|-----|----------|--------|-----------|------------|
-<!-- ROWS -->
-| 14 | 2026-08-27 | Trapping Rain Water | two_pointers | Hard | Two Pointers O(1) space, so voi brute force va Prefix/Suffix Max | O(n)/O(1) |
-| 13 | 2026-08-24 | Container With Most Water | two_pointers | Medium | TwoPointers | O(n)/O(1) |
-| 12 | 2026-08-22 | 3 Sum | two_pointers | Medium | Two | Pointers |
-| 11 | 2026-08-17 | Two Sum II | two_poiters | Medium | Two | Pointer |
-| 10 | 2026-08-15 | Valid Palindrome | two_pointers | Easy | Two Pointers (v2), so với Iterator rev (v1) và String rebuild (v3) | O(n)/O(1) |
-| - | 2026-08-11 | [Longest Consecutive Sequence (Update Approach)](notes/longest_consecutive_sequence.md) | arrays_hashing | Medium | Sorting approach | O(nlogn)/O(n) |
-| 9 | 2026-08-11 | Longest Consecutive Sequence | arrays_hashing | Medium | HashSet | O(n)/O(n) |
-| 8 | 2026-08-09 | Valid Sudoku | arrays_hashing | Medium | HashSet | O(1)/O(1) |
-| 7 | 2026-08-08 | Products Of Array | arrays_hashing | Medium | Prefix | O(n)/O(n) |
-| 6 | 2026-08-04 | Encode AndDecode String | arrays_hashing | Medium | Chunked | Transfer |
-| - | 2026-08-03 | [Top K Frequent Elements (Update Approach)](notes/top_k_frequent_elements.md) | arrays_hashing | Medium | Bucket Sort approach | O(n)/O(n) |
-| 5 | 2026-08-02 | Top K Frequency Elements | top-k-frequent-elements | Medium | BinaryHeap | O(n)/O(n) |
-| 4 | 2026-07-30 | Group_Anagrams | arrays_hashing | Medium | Sorting | O(n)/O(nlogn) |
-| - | 2026-07-28 | [Valid Anagram (Update Approach)](notes/valid_anagram.md) | arrays_hashing | Easy | Frequency Array | O(n)/O(1) |
-| 1 | 2026-07-26 | Two Sum | arrays_hashing | Easy | HashMap | O(n)/O(n) |
-| 2 | 2026-07-24 | Contains Duplicate | arrays_hashing | Easy | HashSet | O(n)/O(n) |
-| 3 | 2026-07-25 | Valid Anagram | arrays_hashing | Easy | Sorting | O(nlogn)/O(n) |
+| #   | Ngày       | Bài                                                                                       | Category       | Độ khó | Cách giải                                                          | Complexity     |
+| --- | ---------- | ----------------------------------------------------------------------------------------- | -------------- | ------ | ------------------------------------------------------------------ | -------------- |
+| 14  | 2026-08-27 | Trapping Rain Water                                                                       | two_pointers   | Hard   | Two Pointers O(1) space, so với brute force và Prefix/Suffix Max   | O(n)/O(1)      |
+| 13  | 2026-08-24 | Container With Most Water                                                                 | two_pointers   | Medium | Two Pointers                                                       | O(n)/O(1)      |
+| 12  | 2026-08-22 | 3 Sum                                                                                     | two_pointers   | Medium | Two Pointers                                                       | O(n)/O(1)      |
+| 11  | 2026-08-17 | Two Sum II                                                                                | two_pointers   | Medium | Two Pointer                                                        | O(n)/O(1)      |
+| 10  | 2026-08-15 | Valid Palindrome                                                                          | two_pointers   | Easy   | Two Pointers (v2), so với Iterator rev (v1) và String rebuild (v3) | O(n)/O(1)      |
+| --- | 2026-08-11 | [Longest Consecutive Sequence (Update Approach)](notes/longest_consecutive_sequence.md)   | arrays_hashing | Medium | Sorting approach                                                   | O(nlogn)/O(n)  |
+| 9   | 2026-08-11 | Longest Consecutive Sequence                                                              | arrays_hashing | Medium | HashSet                                                            | O(n)/O(n)      |
+| 8   | 2026-08-09 | Valid Sudoku                                                                              | arrays_hashing | Medium | HashSet                                                            | O(1)/O(1)      |
+| 7   | 2026-08-08 | Products Of Array                                                                         | arrays_hashing | Medium | Prefix                                                             | O(n)/O(n)      |
+| 6   | 2026-08-04 | Encode And Decode String                                                                  | arrays_hashing | Medium | Chunked Transfer                                                   | O(n)/O(n)      |
+| --- | 2026-08-03 | [Top K Frequent Elements (Update Approach)](notes/top_k_frequent_elements.md)             | arrays_hashing | Medium | Bucket Sort approach                                               | O(n)/O(n)      |
+| 5   | 2026-08-02 | Top K Frequency Elements                                                                  | arrays_hashing | Medium | BinaryHeap                                                         | O(n)/O(n)      |
+| 4   | 2026-07-30 | Group Anagrams                                                                            | arrays_hashing | Medium | Sorting                                                            | O(n)/O(nlogn)  |
+| --- | 2026-07-28 | [Valid Anagram (Update Approach)](notes/valid_anagram.md)                                 | arrays_hashing | Easy   | Frequency Array                                                    | O(n)/O(1)      |
+| 1   | 2026-07-26 | Two Sum                                                                                   | arrays_hashing | Easy   | HashMap                                                            | O(n)/O(n)      |
+| 2   | 2026-07-24 | Contains Duplicate                                                                        | arrays_hashing | Easy   | HashSet                                                            | O(n)/O(n)      |
+| 3   | 2026-07-25 | Valid Anagram                                                                             | arrays_hashing | Easy   | Sorting                                                            | O(nlogn)/O(n)  |
