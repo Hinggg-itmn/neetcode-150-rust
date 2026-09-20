@@ -12,16 +12,27 @@ APPROACH=$5
 COMPLEXITY=$6
 
 README="README.md"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# --- Escape dấu | để không phá vỡ bảng markdown ---
+escape_pipe() { printf '%s' "$1" | sed 's/|/\\|/g'; }
+
+NAME_ESC=$(escape_pipe "$NAME")
+APPROACH_ESC=$(escape_pipe "$APPROACH")
+COMPLEXITY_ESC=$(escape_pipe "$COMPLEXITY")
 
 # Tự động tính số thứ tự dựa trên số dòng bài đã có trong bảng (sau <!-- ROWS -->)
-# -> không cần tự gõ tay, nên không còn lo gõ nhầm/quên tăng số
 NUM=$(awk '
     /<!-- ROWS -->/ { found=1; next }
     found && /^\| *[0-9]+ *\|/ { count++ }
     END { print count + 1 }
 ' "$README")
 
-sed -i "/<!-- ROWS -->/a | $NUM | $(date +%F) | $NAME | $CATEGORY | $DIFF | $APPROACH | $COMPLEXITY |" "$README"
+# Chèn dòng mới ngay sau marker <!-- ROWS -->
+sed -i "/<!-- ROWS -->/a | $NUM | $(date +%F) | $NAME_ESC | $CATEGORY | $DIFF | $APPROACH_ESC | $COMPLEXITY_ESC |" "$README"
+
+# --- Căn lại toàn bộ bảng cho RustRover hiển thị đẹp ---
+"$SCRIPT_DIR/_format_table.sh" "$README"
 
 git add .
 git commit -m "day $NUM: $SLUG ($CATEGORY) - $APPROACH $COMPLEXITY"

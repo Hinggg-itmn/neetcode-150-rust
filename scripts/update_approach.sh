@@ -24,6 +24,15 @@ DIFFICULTY="$4"
 NOTES="$5"
 COMPLEXITY="$6"
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# --- Escape dấu | để không phá vỡ bảng markdown ---
+escape_pipe() { printf '%s' "$1" | sed 's/|/\\|/g'; }
+
+TITLE_ESC=$(escape_pipe "$TITLE")
+NOTES_ESC=$(escape_pipe "$NOTES")
+COMPLEXITY_ESC=$(escape_pipe "$COMPLEXITY")
+
 PROBLEM_FILE="src/${CATEGORY}/${SLUG}.rs"
 if [ ! -f "$PROBLEM_FILE" ]; then
     echo "Lỗi: Không tìm thấy bài toán tại ${PROBLEM_FILE}"
@@ -34,16 +43,12 @@ TODAY=$(date +"%Y-%m-%d")
 
 # ------------------------------------------------------------
 # 1. Chạy test trước khi commit — chỉ lọc test của đúng bài này
-#    (dự án dùng 1 crate chung theo src/<category>/<slug>.rs,
-#    không phải mỗi bài 1 workspace riêng)
 # ------------------------------------------------------------
 echo ">> Đang chạy cargo test cho '${SLUG}'..."
 cargo test "$SLUG" || { echo "Test fail! Dừng commit."; exit 1; }
 
 # ------------------------------------------------------------
-# 2. Cập nhật README.md — chèn ngay sau <!-- ROWS -->,
-#    CÙNG một vị trí với finish_problem.sh, để 2 loại script
-#    không còn ghi vào 2 chỗ khác nhau trong bảng (bug cũ)
+# 2. Cập nhật README.md — chèn ngay sau <!-- ROWS -->
 # ------------------------------------------------------------
 README="README.md"
 if [ ! -f "$README" ]; then
@@ -55,16 +60,17 @@ if ! grep -q "<!-- ROWS -->" "$README"; then
     exit 1
 fi
 
-# Link trỏ về đúng file note thật (notes/<slug>.md) thay vì đường dẫn
-# không tồn tại như trước (<category>/<slug>)
-NEW_ROW="| - | ${TODAY} | [${TITLE} (Update Approach)](notes/${SLUG}.md) | ${CATEGORY} | ${DIFFICULTY} | ${NOTES} | ${COMPLEXITY} |"
+NEW_ROW="| - | ${TODAY} | [${TITLE_ESC} (Update Approach)](notes/${SLUG}.md) | ${CATEGORY} | ${DIFFICULTY} | ${NOTES_ESC} | ${COMPLEXITY_ESC} |"
 
 sed -i "/<!-- ROWS -->/a ${NEW_ROW}" "$README"
+
+# --- Căn lại toàn bộ bảng cho RustRover hiển thị đẹp ---
+"$SCRIPT_DIR/_format_table.sh" "$README"
+
 echo ">> Đã bổ sung lịch sử cập nhật vào README.md"
 
 # ------------------------------------------------------------
-# 3. Git commit và push — tự lấy tên nhánh hiện tại thay vì
-#    hardcode "master" (tránh lỗi nếu bạn dùng "main")
+# 3. Git commit và push
 # ------------------------------------------------------------
 CURRENT_BRANCH=$(git branch --show-current)
 COMMIT_MSG="${TODAY}: update approach for ${TITLE} - ${NOTES}"
